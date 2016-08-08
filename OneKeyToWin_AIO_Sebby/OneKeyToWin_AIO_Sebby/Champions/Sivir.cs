@@ -86,17 +86,17 @@ namespace OneKeyToWin_AIO_Sebby
                 {
                     if(Player.GetAutoAttackDamage(t) * 3 > t.Health - OktwCommon.GetIncomingDamage(t))
                         W.Cast();
-                    if (Program.Combo && Player.Mana > RMANA + WMANA)
+                    if (Program.Combo && Player.Mana > WMANA)
                         W.Cast();
-                    else if (Config.Item("harasW", true).GetValue<bool>() && !Player.UnderTurret(true) && Player.Mana > RMANA + WMANA + QMANA && Config.Item("haras" + t.ChampionName).GetValue<bool>())
+                    else if (Config.Item("harasW", true).GetValue<bool>() && !Player.UnderTurret(true) && Player.Mana > WMANA && Config.Item("haras" + t.ChampionName).GetValue<bool>())
                     {
                         W.Cast();
                     }
                 }
                 else
                 {
-                    var t2 = TargetSelector.GetTarget(900, TargetSelector.DamageType.Physical);
-                    if (t2.IsValidTarget() && Config.Item("harasW", true).GetValue<bool>() && Config.Item("haras" + t2.ChampionName).GetValue<bool>() && !Player.UnderTurret(true) && Player.Mana > RMANA + WMANA + QMANA && t2.Distance(target.Position) < 500)
+                    var t2 = TargetSelector.GetTarget(500, TargetSelector.DamageType.Physical);
+                    if (t2.IsValidTarget() && Config.Item("harasW", true).GetValue<bool>() && Config.Item("haras" + t2.ChampionName).GetValue<bool>() && !Player.UnderTurret(true) && Player.Mana > WMANA && t2.Distance(target.Position) < 500)
                     {
                         W.Cast();
                     }
@@ -177,19 +177,6 @@ namespace OneKeyToWin_AIO_Sebby
                     Q.Cast(t, true);
                 else if (Program.Combo && Player.Mana > RMANA + QMANA)
                     Program.CastSpell(Q, t);
-                else if (Program.Farm && Config.Item("haras" + t.ChampionName).GetValue<bool>() && !Player.UnderTurret(true))
-                {
-                     if (Player.Mana > Player.MaxMana * 0.9)
-                        Program.CastSpell(Q, t);
-                     else if (ObjectManager.Player.Mana > RMANA + WMANA + QMANA + QMANA)
-                        Program.CastSpell(Qc, t);
-                     else if (Player.Mana > RMANA + WMANA + QMANA + QMANA)
-                     {
-                         Q.CastIfWillHit(t, 2, true);
-                         if(Program.LaneClear)
-                             Program.CastSpell(Q, t);
-                     }
-                }
                 if (Player.Mana > RMANA + WMANA)
                 {
                     foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(Q.Range) && !OktwCommon.CanMove(enemy)))
