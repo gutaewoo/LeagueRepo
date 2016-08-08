@@ -250,7 +250,7 @@ namespace OneKeyToWin_AIO_Sebby
             {
                 if (Program.Combo && Player.Mana > RMANA + WMANA)
                     CastW(t);
-                else if (Program.Farm  && Player.Mana > RMANA + WMANA + QMANA + WMANA && OktwCommon.CanHarras())
+                else if (Program.Farm  && Player.Mana > RMANA + WMANA + QMANA + WMANA + 1000 && OktwCommon.CanHarras())
                 {
                     foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(W.Range) && Config.Item("haras" + t.ChampionName).GetValue<bool>()))
                         CastW(t);
