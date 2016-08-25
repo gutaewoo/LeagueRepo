@@ -511,7 +511,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                         obj = minion;
                 }
                 
-                W.Cast(obj.Position);
+                ;
             }
         }
     }
