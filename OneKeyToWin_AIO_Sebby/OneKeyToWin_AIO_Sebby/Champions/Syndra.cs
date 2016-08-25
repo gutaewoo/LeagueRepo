@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using LeagueSharp;
@@ -256,11 +256,11 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                         CatchW(t);
                     }
                     else if (OktwCommon.GetKsDamage(t, W) > t.Health)
-                        CatchW(t);
+                        ;
                     else if (Player.Mana > RMANA + WMANA + 1000)
                     {
                         foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(W.Range) && !OktwCommon.CanMove(enemy)))
-                            CatchW(t);
+                            ;
                     }
                 }
                 else if (Program.LaneClear && !Q.IsReady() && Player.ManaPercent > Config.Item("Mana", true).GetValue<Slider>().Value && Config.Item("farmW", true).GetValue<bool>())
