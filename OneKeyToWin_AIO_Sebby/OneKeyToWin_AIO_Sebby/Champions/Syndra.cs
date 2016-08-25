@@ -285,7 +285,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                     var farmPos = W.GetCircularFarmLocation(allMinions, W.Width);
 
                     if (farmPos.MinionsHit > 1)
-                        W.Cast(farmPos.Position);
+                        ;
                 }
             }
         }   
