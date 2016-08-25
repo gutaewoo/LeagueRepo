@@ -248,7 +248,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                 var t = TargetSelector.GetTarget(W.Range - 150, TargetSelector.DamageType.Magical);
                 if (t.IsValidTarget())
                 {
-                    if (Program.Combo && Player.Mana > RMANA + QMANA + WMANA)
+                    if (Program.Combo && Player.Mana > RMANA + QMANA + WMANA + 1000)
                         ;
                     else if (Program.Farm && Config.Item("harrasW", false).GetValue<bool>() && Config.Item("harras" + t.ChampionName).GetValue<bool>() 
                         && Player.ManaPercent > Config.Item("QHarassMana", true).GetValue<Slider>().Value && OktwCommon.CanHarras())
