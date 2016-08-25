@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using LeagueSharp;
@@ -65,7 +65,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
             foreach (var enemy in HeroManager.Enemies)
                 Config.SubMenu(Player.ChampionName).SubMenu("Harras").AddItem(new MenuItem("harras" + enemy.ChampionName, enemy.ChampionName).SetValue(true));
 
-            Config.SubMenu(Player.ChampionName).SubMenu("Farm").AddItem(new MenuItem("farmQout", "Last hit Q minion out range A", true).SetValue(true));
+            Config.SubMenu(Player.ChampionName).SubMenu("Farm").AddItem(new MenuItem("farmQout", "Last hit Q minion out range AA", true).SetValue(true));
             Config.SubMenu(Player.ChampionName).SubMenu("Farm").AddItem(new MenuItem("farmQ", "Lane clear Q", true).SetValue(true));
             Config.SubMenu(Player.ChampionName).SubMenu("Farm").AddItem(new MenuItem("farmW", "Lane clear W", true).SetValue(true));
             Config.SubMenu(Player.ChampionName).SubMenu("Farm").AddItem(new MenuItem("Mana", "LaneClear Mana", true).SetValue(new Slider(80, 100, 0)));
@@ -248,19 +248,19 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                 var t = TargetSelector.GetTarget(W.Range - 150, TargetSelector.DamageType.Magical);
                 if (t.IsValidTarget())
                 {
-                    if (Program.Combo && Player.Mana > RMANA + QMANA + WMANA + 1000)
-                        ;
-                    else if (Program.Farm && Config.Item("harrasW", false).GetValue<bool>() && Config.Item("harras" + t.ChampionName).GetValue<bool>() 
+                    if (Program.Combo && Player.Mana > RMANA + QMANA + WMANA)
+                        CatchW(t);
+                    else if (Program.Farm && Config.Item("harrasW", true).GetValue<bool>() && Config.Item("harras" + t.ChampionName).GetValue<bool>() 
                         && Player.ManaPercent > Config.Item("QHarassMana", true).GetValue<Slider>().Value && OktwCommon.CanHarras())
                     {
-                        ;
+                        CatchW(t);
                     }
                     else if (OktwCommon.GetKsDamage(t, W) > t.Health)
-                        ;
-                    else if (Player.Mana > RMANA + WMANA + 1000)
+                        CatchW(t);
+                    else if (Player.Mana > RMANA + WMANA)
                     {
                         foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(W.Range) && !OktwCommon.CanMove(enemy)))
-                            ;
+                            CatchW(t);
                     }
                 }
                 else if (Program.LaneClear && !Q.IsReady() && Player.ManaPercent > Config.Item("Mana", true).GetValue<Slider>().Value && Config.Item("farmW", true).GetValue<bool>())
@@ -285,7 +285,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                     var farmPos = W.GetCircularFarmLocation(allMinions, W.Width);
 
                     if (farmPos.MinionsHit > 1)
-                        ;
+                        W.Cast(farmPos.Position);
                 }
             }
         }   
@@ -511,7 +511,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                         obj = minion;
                 }
                 
-                ;
+                W.Cast(obj.Position);
             }
         }
     }
