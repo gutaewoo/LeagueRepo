@@ -250,14 +250,14 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                 {
                     if (Program.Combo && Player.Mana > RMANA + QMANA + WMANA)
                         CatchW(t);
-                    else if (Program.Farm && Config.Item("harrasW", true).GetValue<bool>() && Config.Item("harras" + t.ChampionName).GetValue<bool>() 
+                    else if (Program.Farm && Config.Item("harrasW", false).GetValue<bool>() && Config.Item("harras" + t.ChampionName).GetValue<bool>() 
                         && Player.ManaPercent > Config.Item("QHarassMana", true).GetValue<Slider>().Value && OktwCommon.CanHarras())
                     {
                         CatchW(t);
                     }
                     else if (OktwCommon.GetKsDamage(t, W) > t.Health)
                         CatchW(t);
-                    else if (Player.Mana > RMANA + WMANA)
+                    else if (Player.Mana > RMANA + WMANA + 1000)
                     {
                         foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(W.Range) && !OktwCommon.CanMove(enemy)))
                             CatchW(t);
