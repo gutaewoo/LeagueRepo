@@ -253,7 +253,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                     else if (Program.Farm && Config.Item("harrasW", false).GetValue<bool>() && Config.Item("harras" + t.ChampionName).GetValue<bool>() 
                         && Player.ManaPercent > Config.Item("QHarassMana", true).GetValue<Slider>().Value && OktwCommon.CanHarras())
                     {
-                        CatchW(t);
+                        ;
                     }
                     else if (OktwCommon.GetKsDamage(t, W) > t.Health)
                         ;
