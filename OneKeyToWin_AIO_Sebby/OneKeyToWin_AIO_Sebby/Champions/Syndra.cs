@@ -249,14 +249,6 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                 if (t.IsValidTarget())
                 {
                 }
-                else if (Program.LaneClear && !Q.IsReady() && Player.ManaPercent > Config.Item("Mana", true).GetValue<Slider>().Value && Config.Item("farmW", true).GetValue<bool>())
-                {
-                    var allMinions = Cache.GetMinions(Player.ServerPosition, W.Range);
-                    var farmPos = W.GetCircularFarmLocation(allMinions, W.Width);
-
-                    if (farmPos.MinionsHit >= Config.Item("LCminions", true).GetValue<Slider>().Value)
-                        CatchW(allMinions.FirstOrDefault());
-                }
             }
             else
             {
