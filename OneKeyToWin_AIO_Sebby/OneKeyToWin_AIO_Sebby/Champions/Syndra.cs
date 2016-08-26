@@ -274,6 +274,10 @@ namespace OneKeyToWin_AIO_Sebby.Champions
             }
             else
             {
+                var t = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Magical);
+                if (t.IsValidTarget())
+                {
+                }
                 else if (Program.LaneClear && Config.Item("farmW", true).GetValue<bool>())
                 {
                     var allMinions = Cache.GetMinions(Player.ServerPosition, W.Range);
