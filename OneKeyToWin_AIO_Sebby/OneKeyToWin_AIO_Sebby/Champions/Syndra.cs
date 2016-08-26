@@ -243,7 +243,46 @@ namespace OneKeyToWin_AIO_Sebby.Champions
 
         private void LogicW()
         {
+            if (W.Instance.ToggleState == 1)
+            {
+                var t = TargetSelector.GetTarget(W.Range - 150, TargetSelector.DamageType.Magical);
+                if (t.IsValidTarget())
+                {
+                    if (Program.Combo && Player.Mana > RMANA + QMANA + WMANA)
+                        CatchW(t);
+                    else if (Program.Farm && Config.Item("harrasW", true).GetValue<bool>() && Config.Item("harras" + t.ChampionName).GetValue<bool>() 
+                        && Player.ManaPercent > Config.Item("QHarassMana", true).GetValue<Slider>().Value && OktwCommon.CanHarras())
+                    {
+                        CatchW(t);
+                    }
+                    else if (OktwCommon.GetKsDamage(t, W) > t.Health)
+                        CatchW(t);
+                    else if (Player.Mana > RMANA + WMANA)
+                    {
+                        foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(W.Range) && !OktwCommon.CanMove(enemy)))
+                            CatchW(t);
+                    }
+                }
+                else if (Program.LaneClear && !Q.IsReady() && Player.ManaPercent > Config.Item("Mana", true).GetValue<Slider>().Value && Config.Item("farmW", true).GetValue<bool>())
+                {
+                    var allMinions = Cache.GetMinions(Player.ServerPosition, W.Range);
+                    var farmPos = W.GetCircularFarmLocation(allMinions, W.Width);
 
+                    if (farmPos.MinionsHit >= Config.Item("LCminions", true).GetValue<Slider>().Value)
+                        CatchW(allMinions.FirstOrDefault());
+                }
+            }
+            else
+            {
+                else if (Program.LaneClear && Config.Item("farmW", true).GetValue<bool>())
+                {
+                    var allMinions = Cache.GetMinions(Player.ServerPosition, W.Range);
+                    var farmPos = W.GetCircularFarmLocation(allMinions, W.Width);
+
+                    if (farmPos.MinionsHit > 1)
+                        W.Cast(farmPos.Position);
+                }
+            }
         }   
 
         private void LogicQ()
