@@ -248,20 +248,6 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                 var t = TargetSelector.GetTarget(W.Range - 150, TargetSelector.DamageType.Magical);
                 if (t.IsValidTarget())
                 {
-                    if (Program.Combo && Player.Mana > RMANA + QMANA + WMANA)
-                        CatchW(t);
-                    else if (Program.Farm && Config.Item("harrasW", true).GetValue<bool>() && Config.Item("harras" + t.ChampionName).GetValue<bool>() 
-                        && Player.ManaPercent > Config.Item("QHarassMana", true).GetValue<Slider>().Value && OktwCommon.CanHarras())
-                    {
-                        CatchW(t);
-                    }
-                    else if (OktwCommon.GetKsDamage(t, W) > t.Health)
-                        CatchW(t);
-                    else if (Player.Mana > RMANA + WMANA)
-                    {
-                        foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(W.Range) && !OktwCommon.CanMove(enemy)))
-                            CatchW(t);
-                    }
                 }
                 else if (Program.LaneClear && !Q.IsReady() && Player.ManaPercent > Config.Item("Mana", true).GetValue<Slider>().Value && Config.Item("farmW", true).GetValue<bool>())
                 {
