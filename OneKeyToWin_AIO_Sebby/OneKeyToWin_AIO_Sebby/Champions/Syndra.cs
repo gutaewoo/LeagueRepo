@@ -277,7 +277,8 @@ namespace OneKeyToWin_AIO_Sebby.Champions
                 var t = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Magical);
                 if (t.IsValidTarget())
                 {
-                    Program.CastSpell(W, t);
+                    if (Program.Combo && Player.Mana > RMANA + QMANA + WMANA)
+                        Program.CastSpell(W, t);
                 }
                 else if (Program.LaneClear && Config.Item("farmW", true).GetValue<bool>())
                 {
