@@ -31,6 +31,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
             E.SetSkillshot(0.25f, 100, 2500f, false, SkillshotType.SkillshotLine);
             EQ.SetSkillshot(0.6f, 100f, 2500f, false, SkillshotType.SkillshotLine);
             Eany.SetSkillshot(0.30f, 50f, 2500f, false, SkillshotType.SkillshotLine);
+            R.SetTargetted(0.5f, 1100f);
 
             Config.SubMenu(Player.ChampionName).SubMenu("Draw").AddItem(new MenuItem("qRange", "Q range", true).SetValue(false));
             Config.SubMenu(Player.ChampionName).SubMenu("Draw").AddItem(new MenuItem("wRange", "W range", true).SetValue(false));
