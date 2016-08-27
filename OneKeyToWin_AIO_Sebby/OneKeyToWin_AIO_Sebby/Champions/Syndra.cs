@@ -489,30 +489,7 @@ namespace OneKeyToWin_AIO_Sebby.Champions
         private void CatchW(Obj_AI_Base t, bool onlyMinin = false)
         {
 
-            if (Utils.TickCount - W.LastCastAttemptT < 150)
-                return;
 
-            var catchRange = 925;
-            Obj_AI_Base obj = null;
-            if (BallsList.Count > 0 && !onlyMinin)
-            {
-                obj = BallsList.Find(ball => ball.Distance(Player) < catchRange);
-            }
-            if (obj == null)
-            {
-                obj = MinionManager.GetMinions(Player.ServerPosition, catchRange, MinionTypes.All, MinionTeam.NotAlly, MinionOrderTypes.MaxHealth).FirstOrDefault();
-            }
-
-            if (obj != null)
-            {
-                foreach (var minion in MinionManager.GetMinions(Player.ServerPosition, catchRange, MinionTypes.All, MinionTeam.NotAlly, MinionOrderTypes.MaxHealth))
-                {
-                    if (t.Distance(minion) < t.Distance(obj))
-                        obj = minion;
-                }
-                
-                W.Cast(obj.Position);
-            }
         }
     }
 }
