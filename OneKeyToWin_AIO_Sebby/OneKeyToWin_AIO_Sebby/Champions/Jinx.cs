@@ -198,16 +198,16 @@ namespace OneKeyToWin_AIO_Sebby
                     var distance = GetRealDistance(t);
                     if (Program.Combo && (Player.Mana > RMANA + WMANA + 10 || Player.GetAutoAttackDamage(t) * 3 > t.Health))
                         Q.Cast();
-                    else if (Program.Farm && !Player.IsWindingUp && SebbyLib.Orbwalking.CanAttack() && Config.Item("Qharras", true).GetValue<bool>() && !ObjectManager.Player.UnderTurret(true) && Player.Mana > RMANA + WMANA + EMANA + 20 && distance < bonusRange() + t.BoundingRadius + Player.BoundingRadius)
+                    else if (Program.Farm && !Player.IsWindingUp && SebbyLib.Orbwalking.CanAttack() && Config.Item("Qharras", true).GetValue<bool>() && !ObjectManager.Player.UnderTurret(true) && Player.Mana > EMANA + 20 && distance < bonusRange() + t.BoundingRadius + Player.BoundingRadius)
                         Q.Cast();
                 }
             }
-            else if (!FishBoneActive && Program.Combo && Player.Mana > RMANA + WMANA + 20 && Player.CountEnemiesInRange(2000) > 0)
+            else if (!FishBoneActive && Program.Combo && Player.Mana > 20)
                 Q.Cast();
-            else if (FishBoneActive && Program.Combo && Player.Mana < RMANA + WMANA + 20)
+            else if (FishBoneActive && Program.Combo && Player.Mana < 20)
                 Q.Cast();
-            else if (FishBoneActive && Program.Combo && Player.CountEnemiesInRange(2000) == 0)
-                Q.Cast();
+            else if (FishBoneActive && Program.Combo)
+                ;
             else if (FishBoneActive && (Program.Farm || Orbwalker.ActiveMode == SebbyLib.Orbwalking.OrbwalkingMode.LastHit))
             {
                 Q.Cast();
