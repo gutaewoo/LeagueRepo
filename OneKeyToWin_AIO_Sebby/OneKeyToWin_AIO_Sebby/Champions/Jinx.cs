@@ -111,12 +111,8 @@ namespace OneKeyToWin_AIO_Sebby
             {
                 var Target = gapcloser.Sender;
                 if (Target.IsValidTarget(E.Range))
-                {
                     E.Cast(gapcloser.End);
-                }
-                return;
             }
-            return;
         }
 
         private void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base unit, GameObjectProcessSpellCastEventArgs args)
@@ -323,7 +319,7 @@ namespace OneKeyToWin_AIO_Sebby
 
                     if (Rdmg > predictedHealth && !OktwCommon.IsSpellHeroCollision(target, R) && GetRealDistance(target) > bonusRange() + 200)
                     {
-                        if ( GetRealDistance(target) > bonusRange() + 300 + target.BoundingRadius && target.CountAlliesInRange(600) == 0 && Player.CountEnemiesInRange(400) == 0)
+                        if ( GetRealDistance(target) > bonusRange() + 300 + target.BoundingRadius && target.CountAlliesInRange(500) == 0 && Player.CountEnemiesInRange(400) == 0)
                         {
                             castR(target);
                         }
@@ -367,7 +363,7 @@ namespace OneKeyToWin_AIO_Sebby
 
         private float GetRealPowPowRange(GameObject target)
         {
-            return 640f + Player.BoundingRadius + target.BoundingRadius;
+            return 620f + Player.BoundingRadius + target.BoundingRadius;
 
         }
 
