@@ -242,7 +242,7 @@ namespace OneKeyToWin_AIO_Sebby
                         foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(W.Range) && GetRealDistance(enemy) > bonusRange() ).OrderBy(enemy => enemy.Health))
                             Program.CastSpell(W, enemy);
                     }
-                    else if (Program.Farm && Player.Mana > RMANA + EMANA + WMANA + WMANA + 40 && OktwCommon.CanHarras())
+                    else if (Program.Farm && Player.Mana > RMANA + EMANA + WMANA + WMANA + 400 && OktwCommon.CanHarras())
                     {
                         foreach (var enemy in HeroManager.Enemies.Where(enemy => enemy.IsValidTarget(W.Range) && Config.Item("haras" + enemy.ChampionName).GetValue<bool>()))
                             Program.CastSpell(W, enemy);
